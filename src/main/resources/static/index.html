@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    
+    <h3>SpringBoot Rest API Crud jujubaprojects</h3>
+
+    <form action="" id = "formCadastroUsuario">
+
+        <div class="mb-3 row">
+            <label for="id" class="form-label">ID</label>
+            <div class="col-sm-10">
+              <input type="text"  class="form-control-plaintext" id="id" readonly = "readonly">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="nome" class="form-label">Nome do Usuário</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="Nome" placeholder="Informe o Nome" required = "required">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="idade" class="form-label">Idade</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id=" idade">
+            </div>
+          </div>
+
+    </form>
+
+    <button type="button" class="btn btn-primary">Salvar</button>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+      function salvarUsuário(){
+        id = $("#id").val();
+
+        var nome = $("#nome").val();
+        var idade = $("#idade").vaç();
+
+        $.ajax({
+          method: "post",
+          url:"salvar",
+          data:JSON.stringify({id : id , nome : nome , idade : idade}),
+          contentType:"aplication/json; charset-utf-$",
+          sucess: function(response){
+            alert("Salvo com Sucesso");
+          }
+        }).fail(function(xhr,staus,errorThrown){
+            alert("Erro ao Salvar");
+
+        });
+
+  //      alert(nome+" - "+id+" - "+idade);
+      }
+  </script>
+  
+  </body>
+</html>
