@@ -59,24 +59,26 @@ public class ApiController {
     @ResponseBody /* Retorna os dados para o corpo da Resposta*/
     public ResponseEntity<?> salvar(@RequestBody Usuario usuario){/*Receber os dados para salvar */
 
-    if(usuario.getId() == 0){
-            return new ResponseEntity<String> ("digite um id válido" , HttpStatus.OK);
+        
+        Usuario user = usuarioRepository.save(usuario);
 
-    }else{
-
-      Usuario user = usuarioRepository.save(usuario);
-
-        return new ResponseEntity<Usuario> (user , HttpStatus.OK);
-       }
+        return new ResponseEntity<Usuario>(user, HttpStatus.CREATED);
+   
     }
 
     @PutMapping("/atualizar")/*Mapeia na URL */
     @ResponseBody /* Retorna os dados para o corpo da Resposta*/
-    public ResponseEntity<Usuario> editar(@RequestBody Usuario usuario){
+    public ResponseEntity<?> editar(@RequestBody Usuario usuario){
 
-        Usuario user = usuarioRepository.saveAndFlush(usuario);
+         if(usuario.getId() == 0){
+            return new ResponseEntity<String> ("digite um id válido" , HttpStatus.OK);
 
-        return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+    }else{
+
+      Usuario user = usuarioRepository.saveAndFlush(usuario);
+
+        return new ResponseEntity<Usuario> (user , HttpStatus.OK);
+       }
 
     }
 
