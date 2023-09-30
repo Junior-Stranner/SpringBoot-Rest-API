@@ -83,7 +83,7 @@ public class ApiController {
     }
 
 
-    @DeleteMapping("/deletar")
+    @DeleteMapping("/deletar/{id}")
     @ResponseBody /* Retorna os dados para o corpo da Resposta*/
     public ResponseEntity<?> deletar(@RequestParam long id){
 
@@ -103,11 +103,11 @@ public class ApiController {
     }
 
 
-    @GetMapping("/buscarNome/{nome}")
+    @GetMapping("/buscarNome")
     @ResponseBody /* Retorna os dados para o corpo da Resposta*/
-    public ResponseEntity< List<Usuario>> buscarPorNome(@PathVariable String nome){
+    public ResponseEntity< List<Usuario>> buscarPorNome(@RequestParam(name = "name") String name){
 
-        List<Usuario> usuario = usuarioRepository.findByNome(nome);
+        List<Usuario> usuario = usuarioRepository.buscarNome(name.trim().toUpperCase());
 
         return new ResponseEntity< List<Usuario>>(usuario, HttpStatus.OK);
     }

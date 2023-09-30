@@ -89,6 +89,29 @@
 
  function pesquisaUser(){
   var nome = $("#nome").val();
+
+  if(nome != null && nome.trim() != ''){
+
+
+    $.ajax({
+      method: "Get",
+      url: "buscarNome",
+      data: "name = "+nome,
+
+      contentType: "application/json; charset=utf-8", // Correção: "aplication" e "charset-utf-$" contêm erros de digitação.
+      success: function (response) {
+        // Correção: "sucess" deve ser "success".
+        // Correção: A linha a seguir não faz sentido e deve ser removida:
+        // var id = $("#id").val(response.id);
+        //alert("Gravou com Sucesso");
+
+      }
+    }).fail(function (xhr, status, errorThrown) {
+      // Correção: "staus" deve ser "status".
+      alert("Erro ao buscar Usuário: " + xhr.responseText);
+
+    });
+  }
  }
 
 
@@ -99,7 +122,7 @@
     var idade = $("#idade").val(); // Correção: "vaç()" deve ser "val()".
 
     $.ajax({
-      method: "post",
+      method: "Post",
       url: "salvar",
       data: JSON.stringify({ id: id, nome: nome, idade: idade }),
       contentType: "application/json; charset=utf-8", // Correção: "aplication" e "charset-utf-$" contêm erros de digitação.
@@ -108,8 +131,9 @@
         // Correção: A linha a seguir não faz sentido e deve ser removida:
         // var id = $("#id").val(response.id);
         alert("Salvo com Sucesso");
-      },
-    }).fail(function (xhr, status, errorThrown) {
+      }
+
+      }).fail(function (xhr, status, errorThrown) {
       // Correção: "staus" deve ser "status".
       alert("Erro ao Salvar: " + xhr.responseText);
     });
